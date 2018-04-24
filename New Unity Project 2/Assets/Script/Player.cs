@@ -28,18 +28,30 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Vector2 temp = gameObject.transform.localScale;
 
         //キーボード操作
         if (Input.GetKey(KeyCode.RightArrow))
         {
             direction = 1f;
-           
-                Anim.SetBool("RunKey", true);
+            if (temp.x <= 0)
+            {
+                temp.x *= -1;
+                gameObject.transform.localScale = temp;
+            }
+            Anim.SetBool("RunKey", true);
            
         }
         else if (Input.GetKey(KeyCode.LeftArrow))
         {
             direction = -1f;
+            if (temp.x > 0)
+            {
+                temp.x *= -1;
+                gameObject.transform.localScale = temp;
+            }
+            gameObject.transform.localScale = temp;
+            Anim.SetBool("RunKey", true);
         }
         else
         {

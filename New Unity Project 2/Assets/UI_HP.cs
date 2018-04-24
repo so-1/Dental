@@ -9,6 +9,7 @@ public class UI_HP : MonoBehaviour {
     public bool roop;
     public float countTime = 5.0f;
     public GameObject over;
+    public GameObject Player;
 
     private void Start()
     {
@@ -25,6 +26,7 @@ public class UI_HP : MonoBehaviour {
             if(UIobj.fillAmount <= 0.1f)
             {
                 Destroy(UIobj);
+                Player.SetActive(false);
                 over.SetActive(true);
                 roop = false;
             }
