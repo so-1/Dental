@@ -10,6 +10,10 @@ public class Player : MonoBehaviour
     public float scroll = 1f;
     float direction = 0f;
     Rigidbody2D rb2d;
+
+    private Animator Anim;
+   
+
     bool jump = false;
 
     // Use this for initialization
@@ -17,6 +21,7 @@ public class Player : MonoBehaviour
     {
         //コンポーネント読み込み
         rb2d = GetComponent<Rigidbody2D>();
+        Anim = GetComponent<Animator>();
     }
 
 
@@ -28,6 +33,9 @@ public class Player : MonoBehaviour
         if (Input.GetKey(KeyCode.RightArrow))
         {
             direction = 1f;
+           
+                Anim.SetBool("RunKey", true);
+           
         }
         else if (Input.GetKey(KeyCode.LeftArrow))
         {
@@ -36,6 +44,7 @@ public class Player : MonoBehaviour
         else
         {
             direction = 0f;
+            Anim.SetBool("RunKey", false);
         }
 
 
@@ -47,7 +56,12 @@ public class Player : MonoBehaviour
         {
             rb2d.AddForce(Vector2.up * flap);
             jump = true;
+            Anim.SetBool("JumpKey",true);
         }
+        else {
+            Anim.SetBool("JumpKey", false);
+        }
+        
 
 
     }
