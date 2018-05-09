@@ -8,7 +8,7 @@ public class CameraController : MonoBehaviour
 
 
     private Vector3 offset;         //プレイヤーとカメラ間のオフセット距離を格納する Public 変数
-
+    private Vector3 cameraPos;
 
     // イニシャライゼーションに使用ます。
     void Start()
@@ -23,6 +23,8 @@ public class CameraController : MonoBehaviour
     void LateUpdate()
     {
         //カメラの transform 位置をプレイヤーのものと等しく設定します。ただし、計算されたオフセット距離によるずれも加えます。
-        transform.position = player.transform.position + offset;
+        cameraPos = player.transform.position + offset;
+        cameraPos.x = 0;
+        transform.position = cameraPos;
     }
 }
